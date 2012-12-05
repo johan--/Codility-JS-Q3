@@ -2,7 +2,19 @@
 (function() {
 
   Math.Fibonacci = function(N) {
-    return 0;
+    var resultAsString;
+    resultAsString = String(Math.FibonacciAlgorithm(N));
+    if (resultAsString.lenght <= 6) {
+      return parseInt(resultAsString);
+    }
+    return parseInt(resultAsString.substr(-6));
+  };
+
+  Math.FibonacciAlgorithm = function(N) {
+    if (N === 0 || N === 1) {
+      return N;
+    }
+    return Math.FibonacciAlgorithm(N - 1) + Math.FibonacciAlgorithm(N - 2);
   };
 
 }).call(this);
