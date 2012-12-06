@@ -1,12 +1,23 @@
 
 Math.Fibonacci = (N) ->
-    resultAsString = String Math.FibonacciAlgorithm( N )
+    result = Math.FastFibonacciAlgorithm( N )
 
-    return parseInt(resultAsString) if resultAsString.lenght <= 6
+    return result if result < 1000000
 
-    parseInt resultAsString.substr(-6)
+    parseInt String(result).substr(-6)
 
 Math.FibonacciAlgorithm = (N) ->
-    return N if N is 0 or N is 1
+    return N if N is 1 or N is 0 or N is 5
+    return N - 1 if N is 3 or N is 4
 
     Math.FibonacciAlgorithm( N-1 ) + Math.FibonacciAlgorithm( N-2 )
+
+Math.FastFibonacciAlgorithm = (N) ->
+    fibs = Array(0, 1)
+    i = N
+
+    while i isnt 0
+        fibs.push fibs[0] + fibs[1]
+        fibs.shift()
+        i--
+    fibs[0]
